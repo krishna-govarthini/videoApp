@@ -12,19 +12,21 @@ VideoApp is a web application built using Next.js and Tailwind CSS. It features 
 ## How to Clone and Run the Project  
 
 1. Clone the repository:  
-   ```bash
-   git clone https://github.com/krishna-govarthini/videoApp.git
-  ```
+```bash
+git clone https://github.com/krishna-govarthini/videoApp.git
+```
 2. Navigate to the project directory:
-  ```bash cd VideoApp```
+```bash
+cd VideoApp
+```
 3. Install dependencies:
-  ```bash
-  npm install
-  ```
+```bash
+npm install
+```
 4. Start the development server:
-  ```bash
-  npm run dev
- ```
+```bash
+npm run dev
+```
 5. Open the app in your browser at http://localhost:3000.
 
 Feel free to explore and use the app! 😊
