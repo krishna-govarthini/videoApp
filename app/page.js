@@ -1,101 +1,117 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+
+const allVideos = [
+  { id: 1, title: "Sample Video 1", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { id: 2, title: "Sample Video 2", url: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4" },
+  { id: 3, title: "Sample Video 3", url: "https://videos.pexels.com/video-files/6826658/6826658-sd_360_640_25fps.mp4" },
+  { id: 4, title: "Sample Video 4", url: "https://samplelib.com/lib/preview/mp4/sample-20s.mp4" },
+  { id: 5, title: "Sample Video 5", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { id: 6, title: "Sample Video 6", url: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4" },
+  { id: 7, title: "Sample Video 7", url: "https://videos.pexels.com/video-files/29523221/12708093_360_640_60fps.mp4" },
+  { id: 8, title: "Sample Video 8", url: "https://samplelib.com/lib/preview/mp4/sample-20s.mp4" },
+  { id: 9, title: "Sample Video 9", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { id: 10, title: "Sample Video 10", url: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4" },
+  { id: 11, title: "Sample Video 11", url: "https://videos.pexels.com/video-files/28948611/12525695_360_640_60fps.mp4" },
+  { id: 12, title: "Sample Video 12", url: "https://samplelib.com/lib/preview/mp4/sample-20s.mp4" },
+  { id: 13, title: "Sample Video 13", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { id: 14, title: "Sample Video 14", url: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4" },
+  { id: 15, title: "Sample Video 15", url: "https://videos.pexels.com/video-files/27824084/12234957_640_360_30fps.mp4" },
+  { id: 16, title: "Sample Video 16", url: "https://samplelib.com/lib/preview/mp4/sample-20s.mp4" },
+  { id: 17, title: "Sample Video 17", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
+];
+
+const VideosPage = () => {
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const videosPerPage = 9; // Number of videos per page
+  const totalPages = Math.ceil(allVideos.length / videosPerPage);
+
+  // Get videos for the current page
+  const currentVideos = allVideos.slice(
+    (currentPage - 1) * videosPerPage,
+    currentPage * videosPerPage
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="p-6">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h1 className="flex items-center justify-center py-5 text-4xl italic font-extrabold font-serif">VIDEO SEARCH PAGE</h1>
+
+      {/* Search Bar */}
+      <div className="mb-6">
+        <Input placeholder="Search videos..." className="w-full" />
+      </div>
+
+      {/* Video Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {currentVideos.map((video) => (
+          <Dialog key={video.id}>
+            <DialogTrigger asChild>
+              <div
+                className="cursor-pointer rounded-md p-4 shadow-md hover:shadow-lg transition"
+                onClick={() => setSelectedVideo(video)}
+              >
+                <video
+                  src={video.url}
+                  className="w-full h-48 object-cover rounded-md"
+                  muted
+                  autoPlay
+                  loop
+                ></video>
+                <div className="text-center mt-1 font-medium text-sm">{video.title}</div>
+              </div>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>{video.title}</DialogTitle>
+              </DialogHeader>
+              <div>
+                <video
+                  src={video.url}
+                  controls
+                  className="w-full rounded-md"
+                ></video>
+              </div>
+            </DialogContent>
+          </Dialog>
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="mt-6 flex justify-center items-center gap-4">
+        <button
+          className="px-4 py-2 bg-gray-200 rounded-md disabled:opacity-50"
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          Previous
+        </button>
+        <span className="font-medium">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className="px-4 py-2 bg-gray-200 rounded-md disabled:opacity-50"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          Next
+        </button>
+      </div>
     </div>
   );
-}
+};
+
+export default VideosPage;
