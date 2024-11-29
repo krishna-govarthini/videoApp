@@ -1,10 +1,9 @@
 # VideoApp  
 
-## Description
 VideoApp is a web application built using Next.js and Tailwind CSS. It features a video gallery with pagination and an enlarge option for videos using ShadCN's `Dialog` component. The app is responsive and provides a smooth user experience.
 
 ## Features  
-- **Video Gallery:** Displays 17 videos in a grid layout, with 9 videos per page.  
+- **Video Gallery:** Displays videos in a grid layout, showing a specific number of videos per page.  
 - **Pagination:** Navigate between pages easily.  
 - **Video Enlarge Feature:** View videos in an enlarged view with playback controls.  
 - **Responsive Design:** Adapts to different screen sizes.  
