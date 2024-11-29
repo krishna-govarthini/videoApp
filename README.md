@@ -16,9 +16,7 @@ VideoApp is a web application built using Next.js and Tailwind CSS. It features 
    git clone https://github.com/krishna-govarthini/videoApp.git
   ```
 2. Navigate to the project directory:
-  ```bash
-  cd VideoApp
-  ```
+  ```bash cd VideoApp```
 3. Install dependencies:
   ```bash
   npm install
